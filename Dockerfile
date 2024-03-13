@@ -31,4 +31,4 @@ WORKDIR /app
 #COPY --from=build /app/target/camelIntegracionFueradeLineaaparrab-1.0.0-SNAPSHOT app.jar
 COPY --from=build /app/target/*.jar app.jar
 # Ejecuta la aplicación Java.
-#CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar"]
