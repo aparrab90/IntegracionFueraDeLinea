@@ -31,6 +31,6 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
 # Ejecuta la aplicación Java.
-# Se cambió el comando para ejecutar directamente el archivo JAR en lugar de usar Maven.
+#  Se cambió el comando para ejecutar directamente el archivo JAR en lugar de usar Maven.
 # Esto reduce el tamaño de la imagen y mejora el tiempo de inicio, ya que no se necesita Maven en tiempo de ejecución.
-RUN CD  /app && java -jar app.jar
+CMD ["java", "-jar", "app.jar"]
