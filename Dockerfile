@@ -28,7 +28,7 @@ WORKDIR /app
 
 # Copia el artefacto construido desde la etapa de construcción a la etapa final.
 # Asegúrate de ajustar el nombre del archivo JAR aquí.
-COPY --from=build /app/target/camelIntegracionFueradeLineaaparrab-1.0.0-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/camelIntegracionFueradeLineaaparrab-1.0.0-SNAPSHOT app.jar
 
 # Ejecuta la aplicación Java.
 CMD ["java", "-jar", "app.jar"]
