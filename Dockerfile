@@ -8,11 +8,6 @@ WORKDIR /app
 # Primero copia solo el archivo pom.xml.
 COPY pom.xml .
 
-# Descarga las dependencias.
-# Esto se hace antes de copiar el resto de los archivos para que la capa de dependencias se cachee,
-# lo que significa que si solo cambian los archivos fuente y no el pom.xml, no se necesitará descargar las dependencias de nuevo.
-RUN mvn dependency:go-offline
-
 # Ahora copia los archivos fuente.
 COPY src ./src
 
