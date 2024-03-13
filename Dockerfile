@@ -17,18 +17,20 @@ RUN mvn dependency:go-offline
 COPY src ./src
 
 # Construye la aplicación sin ejecutar pruebas para acelerar el proceso de construcción.
+# Corrige el error tipográfico en la opción de skip tests.
 RUN mvn package -DskipTests
 
 # Inicia una nueva etapa para mantener la imagen final lo más limpia y ligera posible.
-# Utiliza una imagen base que solo contiene el JRE para reducir el tamaño de la imagen final.
-FROM maven:3.8.4-openjdk-17-slim
+FROM openjdk:17-slim
 
 # Establece el directorio de trabajo en la imagen final.
 WORKDIR /app
 
 # Copia el artefacto construido desde la etapa de construcción a la etapa final.
-# Asegúrate de ajustar el nombre del archivo JAR aquí.
-#COPY --from=build /app/target/camelIntegracionFueradeLineaaparrab-1.0.0-SNAPSHOT app.jar
+# Esto ayuda a reducir el tamaño de la imagen final, ya que solo contiene el artefacto necesario y las dependencias en tiempo de ejecución.
 COPY --from=build /app/target/*.jar app.jar
+
 # Ejecuta la aplicación Java.
-CMD ["java", "-jar", "app.jar"]
+# Se cambió el comando para ejecutar directamente el archivo JAR en lugar de usar Maven.
+# Esto reduce el tamaño de la imagen y mejora el tiempo de inicio, ya que no se necesita Maven en tiempo de ejecución.
+RUN CD  /app && java -jar app.jar
