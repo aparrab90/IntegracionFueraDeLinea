@@ -49,7 +49,7 @@ public class MyRouteBuilder extends RouteBuilder {
                 .process(exchange -> {
                     ClientCreditProfile payment = exchange.getIn().getBody(ClientCreditProfile.class);
                     String insertSQL = String.format(
-                        "INSERT INTO customer_payments " +
+                        "INSERT INTO public.customer_payments " +
                         "(id, limit_bal, sex, education, marriage, age, " +
                         "pay0, pay2, pay3, pay4, pay5, pay6, " +
                         "bill_amt1, bill_amt2, bill_amt3, bill_amt4, bill_amt5, bill_amt6, " +
