@@ -39,7 +39,8 @@ public class MyRouteBuilder extends RouteBuilder {
 
         BindyCsvDataFormat bindyFormat = new BindyCsvDataFormat(ClientCreditProfile.class);
 
-        from("sftp://localhost:2222/upload?username=foo&password=pass&noop=true")
+//        from("sftp://localhost:2222/upload?username=foo&password=pass&noop=true")
+        from("sftp://localhost:2222/upload?username=foo&password=pass&useUserKnownHostsFile=false&strictHostKeyChecking=no")
             .routeId("read-csv-file-route")
             .unmarshal(bindyFormat)
             .split(body()).streaming()
