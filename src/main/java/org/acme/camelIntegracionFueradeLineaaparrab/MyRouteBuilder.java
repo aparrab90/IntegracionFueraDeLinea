@@ -50,37 +50,10 @@ public class MyRouteBuilder extends RouteBuilder {
                     ClientCreditProfile payment = exchange.getIn().getBody(ClientCreditProfile.class);
                     String insertSQL = String.format(
                         "INSERT INTO public.customer_payments " +
-                        "(id, limit_bal, sex, education, marriage, age, " +
-                        "pay0, pay2, pay3, pay4, pay5, pay6, " +
-                        "bill_amt1, bill_amt2, bill_amt3, bill_amt4, bill_amt5, bill_amt6, " +
-                        "pay_amt1, pay_amt2, pay_amt3, pay_amt4, pay_amt5, pay_amt6, " +
-                        "default_payment_next_month) VALUES " +
-                        "(%d, %f, %d, %d, %d, %d, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %f, %d)",
-                        payment.getId().intValue(),
-                        payment.getLimitBal().doubleValue(),
-                        payment.getSex().intValue(),
-                        payment.getEducation().intValue(),
-                        payment.getMarriage().intValue(),
-                        payment.getAge().intValue(),
-                        payment.getPay0().doubleValue(),
-                        payment.getPay2().doubleValue(),
-                        payment.getPay3().doubleValue(),
-                        payment.getPay4().doubleValue(),
-                        payment.getPay5().doubleValue(),
-                        payment.getPay6().doubleValue(),
-                        payment.getBillAmt1().doubleValue(),
-                        payment.getBillAmt2().doubleValue(),
-                        payment.getBillAmt3().doubleValue(),
-                        payment.getBillAmt4().doubleValue(),
-                        payment.getBillAmt5().doubleValue(),
-                        payment.getBillAmt6().doubleValue(),
-                        payment.getPayAmt1().doubleValue(),
-                        payment.getPayAmt2().doubleValue(),
-                        payment.getPayAmt3().doubleValue(),
-                        payment.getPayAmt4().doubleValue(),
-                        payment.getPayAmt5().doubleValue(),
-                        payment.getPayAmt6().doubleValue(),
-                        payment.getDefaultPaymentNextMonth().intValue()
+                        "(id) VALUES " +
+                        "(%d)",
+                        payment.getId().intValue()
+                        
                     );
                     
                     exchange.getIn().setBody(insertSQL);
